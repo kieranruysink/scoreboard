@@ -313,14 +313,11 @@ client.on('message', async (msg) => {
 // Posts scoreboard every hour from 9:00 to 14:00 (Mon–Sat)
 // Change the hours below if your workday is different
 // ============================================================
-schedule.scheduleJob('0 9-14 * * 1-6', async () => {
-  if (!targetGroupId) {
-    console.log('❌ No target group found — cannot post scoreboard');
-    return;
-  }
+schedule.scheduleJob('0 9-14 * * 1-6', () => {
   const board = buildScoreboard();
-  await client.sendMessage(targetGroupId, board);
-  console.log('📊 Scoreboard posted to K13RAN');
+  console.log('\n📊 ===== SCOREBOARD =====\n');
+  console.log(board);
+  console.log('\n========================\n');
 });
 
 // Daily reset at midnight
